@@ -32,3 +32,24 @@ nav .active li {
   display: none;
 }
 /* ============= NavLink active End here ================ */
+
+.header-component{
+  background: #b5cfd8; 
+}
+
+.footer-component{
+  background: #b5cfd8; 
+}
+.navbar-component{
+  background: #e8ecf1;
+}
+.navbar-mobile-component, .btn-new, .btn-sign-in{
+  background: #6c737e; 
+}
+.product-card{
+  background: #dff0ea; 
+}
+
+.left-side-box{
+  background: #272343; 
+}
