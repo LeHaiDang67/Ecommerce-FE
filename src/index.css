@@ -8,6 +8,7 @@
   .hoverEffect {
     @apply duration-300 cursor-pointer;
   }
+
   .headerSedenavLi {
     @apply hover:underline underline-offset-2 cursor-pointer text-gray-300 hover:text-white;
   }
@@ -31,25 +32,45 @@ nav .active li {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
+
 /* ============= NavLink active End here ================ */
 
-.header-component{
-  background: #b5cfd8; 
+.header-component {
+  background: #b5cfd8;
 }
 
-.footer-component{
-  background: #b5cfd8; 
+.footer-component {
+  background: #b5cfd8;
 }
-.navbar-component{
+
+.navbar-component {
   background: #e8ecf1;
 }
-.navbar-mobile-component, .btn-new, .btn-sign-in{
-  background: #6c737e; 
-}
-.product-card{
-  background: #dff0ea; 
+
+.navbar-mobile-component,
+.btn-new,
+.btn-sign-in {
+  background: #6c737e;
 }
 
-.left-side-box{
-  background: #272343; 
+.product-card {
+  background: #dff0ea;
+}
+
+.left-side-box {
+  background: #272343;
+}
+
+.group-item{
+  margin: 10px 0px;
+}
+
+.container-total {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container-footer {
+  margin-top: auto;
 }
