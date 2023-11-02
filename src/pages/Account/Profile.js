@@ -11,13 +11,17 @@ const Profile = (props) => {
         const target = event.target;
         setUserProfile({ ...Profile, [target.name]: target.value });
     }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+    }
     return (
         <div className="flex justify-center w-full px-4 m-10">
             <div className="w-1/3">
                 <h1 className="font-titleFont underline underline-offset-4 decoration-[1px] font-semibold text-2xl mdl:text-3xl mb-4">
                     Your account
                 </h1>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="group-item">
                         <label className="block font-titleFont text-base font-semibold text-gray-600 mr-3" htmlFor="firstname">First name:</label>
                         <input type="text" name="firstname" value={userProfile?.firstname} onChange={onChange}
@@ -32,7 +36,7 @@ const Profile = (props) => {
                     </div>
                     <div className="group-item">
                         <label className="block font-titleFont text-base font-semibold text-gray-600 mr-3" htmlFor="phoneNumber">Phone number:</label>
-                        <input type="number" min="0" max="11" name="phoneNumber" value={userProfile?.phoneNumber} onChange={onChange}
+                        <input type="number" min="0" name="phoneNumber" value={userProfile?.phoneNumber} onChange={onChange}
                             className="w-full h-8 placeholder:text-sm placeholder:tracking-wide px-4 text-base font-medium placeholder:font-normal rounded-md border-[1px] border-gray-400 outline-none"
                         />
                     </div>

@@ -12,13 +12,19 @@ const HeaderBottom = () => {
   const [show, setShow] = useState(false);
   const [showUser, setShowUser] = useState(false);
   const navigate = useNavigate();
+  const [count, setCount] = useState(0);
+  const token = localStorage.getItem("accessToken");
   const ref = useRef();
   useEffect(() => {
     document.body.addEventListener("click", (e) => {
       if (ref.current.contains(e.target)) {
-        setShow(true);
+        if (count > 0) {
+          setShow(true);
+        }
+        setCount(count++);
       } else {
         setShow(false);
+        setCount(0);
       }
     });
   }, [show, ref]);
@@ -38,12 +44,21 @@ const HeaderBottom = () => {
     setFilteredProducts(filtered);
   }, [searchQuery]);
 
+  const handleShow = () => {
+    setShow(!show);
+  }
+
+  const handleLogout = () => {
+    localStorage.removeItem('accessToken');
+    navigate(`/`);
+  }
+
   return (
     <div className="w-full bg-[#F5F5F3] relative">
       <div className="max-w-container mx-auto">
         <Flex className="flex flex-col lg:flex-row items-start lg:items-center justify-between w-full px-4 pb-4 lg:pb-0 h-full lg:h-24 navbar-component">
           <div
-            onClick={() => setShow(!show)}
+            onClick={() => handleShow()}
             ref={ref}
             className="flex h-14 cursor-pointer items-center gap-2 text-primeColor"
           >
@@ -142,16 +157,24 @@ const HeaderBottom = () => {
                 transition={{ duration: 0.5 }}
                 className="absolute top-6 left-0 z-50 bg-primeColor w-44 text-[#767676] h-auto p-4 pb-6"
               >
-                <Link to="/signin">
-                  <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                    Login
-                  </li>
-                </Link>
-                <Link onClick={() => setShowUser(false)} to="/signup">
-                  <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
-                    Sign Up
-                  </li>
-                </Link>
+                {token === null ?
+                  <><Link to="/signin">
+                    <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                      Login
+                    </li>
+                  </Link>
+                    <Link onClick={() => setShowUser(false)} to="/signup">
+                      <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                        Sign Up
+                      </li>
+                    </Link></> : <>
+                    <div onClick={handleLogout}>
+                      <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
+                        Log out
+                      </li>
+                    </div>
+                  </>
+                }
                 <Link to="/profile">
                   <li className="text-gray-400 px-4 py-1 border-b-[1px] border-b-gray-400 hover:border-b-white hover:text-white duration-300 cursor-pointer">
                     Profile
