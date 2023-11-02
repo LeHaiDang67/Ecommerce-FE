@@ -11,7 +11,7 @@ const ThePublicLayout = () => {
   useEffect(() => {
     let token = localStorage.getItem('accessToken');
     if (token === null) {
-      //navigate('/signin');
+      navigate('/signin');
     }
   }, []);
 

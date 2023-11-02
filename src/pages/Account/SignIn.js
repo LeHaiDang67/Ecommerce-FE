@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logoLight } from "../../assets/images";
 
 const SignIn = () => {
+  const navigate = useNavigate();
   // ============= Initial State Start here =============
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -41,6 +42,10 @@ const SignIn = () => {
       );
       setEmail("");
       setPassword("");
+      localStorage.setItem("accessToken", "123");
+      setTimeout(()=>{
+        navigate('/');
+      }, 100);
     }
   };
   return (
