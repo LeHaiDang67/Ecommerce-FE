@@ -27,7 +27,7 @@ const Product = (props) => {
     });
   };
   return (
-    <div className="w-full relative group">
+    <div className="w-full relative group cursor-pointer" onClick={handleProductDetails}>
       <div className="max-w-80 max-h-80 relative overflow-y-hidden ">
         <div>
           <Image className="w-full h-full" imgSrc={props.img} />

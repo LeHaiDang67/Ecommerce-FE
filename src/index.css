@@ -27,8 +27,13 @@ nav .active li {
     font-weight: 600;
     text-decoration: 1px underline white;
   }
+  .menu-user{
+    left: 0.1rem;
+  }
 }
-
+.menu-user{
+  right: 1.5rem;
+}
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }

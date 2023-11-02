@@ -13,8 +13,10 @@ const HeaderBottom = () => {
   const [showUser, setShowUser] = useState(false);
   const navigate = useNavigate();
   const [count, setCount] = useState(0);
+  const [countUser, setCountUser] = useState(0);
   const token = localStorage.getItem("accessToken");
   const ref = useRef();
+  const refUser = useRef();
   useEffect(() => {
     document.body.addEventListener("click", (e) => {
       if (ref.current.contains(e.target)) {
@@ -28,6 +30,20 @@ const HeaderBottom = () => {
       }
     });
   }, [show, ref]);
+
+  useEffect(() => {
+    document.body.addEventListener("click", (e) => {
+      if (refUser.current.contains(e.target)) {
+        if (countUser > 0) {
+          setShowUser(true);
+        }
+        setCountUser(countUser++);
+      } else {
+        setShowUser(false);
+        setCountUser(0);
+      }
+    });
+  }, [showUser, refUser]);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -146,7 +162,7 @@ const HeaderBottom = () => {
             )}
           </div>
           <div className="flex gap-4 mt-2 lg:mt-0 items-center pr-6 cursor-pointer relative">
-            <div onClick={() => setShowUser(!showUser)} className="flex">
+            <div onClick={() => setShowUser(!showUser)} ref={refUser} className="flex">
               <FaUser />
               <FaCaretDown />
             </div>
@@ -155,7 +171,7 @@ const HeaderBottom = () => {
                 initial={{ y: 30, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.5 }}
-                className="absolute top-6 left-0 z-50 bg-primeColor w-44 text-[#767676] h-auto p-4 pb-6"
+                className="absolute top-7 menu-user z-50 bg-primeColor w-40 text-[#767676] h-auto p-4 pb-6"
               >
                 {token === null ?
                   <><Link to="/signin">
