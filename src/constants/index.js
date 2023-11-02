@@ -85,6 +85,132 @@ export const SplOfferData = [
 
 // =================== PaginationItems Start here ===============
 
+export const BestSellerItems = [
+  {
+    _id: "1011",
+    img: bestSellerOne,
+    productName: "Flower Base",
+    price: "35.00",
+    color: "Blank and White",
+    badge: true,
+    des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
+  },
+  {
+    _id: "1012",
+    img: bestSellerTwo,
+    productName: "New Backpack",
+    price: "180.00",
+    color: "Gray",
+    badge: false,
+    des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
+  },
+  {
+    _id: "1013",
+    img: bestSellerThree,
+    productName: "Household materials",
+    price: "25.00",
+    color: "Mixed",
+    badge: true,
+    des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
+  },
+  {
+    _id: "1014",
+    img: bestSellerFour,
+    productName: "Travel Bag",
+    price: "220.00",
+    color: "Black",
+    badge: false,
+    des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
+  }
+];
+
+export const NewArrivalItems = [
+  {
+    _id: "100001",
+    img: newArrOne,
+    productName: "Round Table Clock",
+    price: "44.00",
+    color: "Black",
+    badge: true,
+    des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
+  },
+  {
+    _id: "100002",
+    img: newArrTwo,
+    productName: "Smart Watch",
+    price: "250.00",
+    color: "Black",
+    badge: true,
+    des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
+  },
+  {
+    _id: "100003",
+    img: newArrThree,
+    productName: "cloth Basket",
+    price: "80.00",
+    color: "Mixed",
+    badge: true,
+    des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
+  },
+  {
+    _id:"100004",
+    img: newArrFour,
+    productName: "Funny toys for babies",
+    price: "60.00",
+    color: "Mixed",
+    badge: false,
+    des: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
+  },
+  {
+    _id: "100005",
+    img: newArrTwo,
+    productName: "Funny toys for babies",
+    price: "60.00",
+    color: "Mixed",
+    badge: false,
+    des:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
+  }
+];
+
+export const SpecialOfferItem = [
+  {
+    _id:"1101",
+    img:spfOne,
+    productName:"Cap for Boys",
+    price:"35.00",
+    color:"Blank and White",
+    badge:true,
+    des:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
+  },
+  {
+    _id:"1102",
+    img:spfTwo,
+    productName:"Tea Table",
+    price:"180.00",
+    color:"Gray",
+    badge:true,
+    des:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
+  },
+  {
+    _id:"1103",
+    img:spfThree,
+    productName:"Headphones",
+    price:"25.00",
+    color:"Mixed",
+    badge:true,
+    des:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
+  },
+  {
+    _id:"1104",
+    img:spfFour,
+    productName:"Sun glasses",
+    price:"220.00",
+    color:"Black",
+    badge:true,
+    des:"Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic excepturi quibusdam odio deleniti reprehenderit facilis."
+  }
+];
+
 export const paginationItems = [
   {
     _id: 1001,
