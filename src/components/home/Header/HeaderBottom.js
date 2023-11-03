@@ -4,19 +4,22 @@ import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import { FaSearch, FaUser, FaCaretDown, FaShoppingCart } from "react-icons/fa";
 import Flex from "../../designLayouts/Flex";
 import { Link, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { paginationItems } from "../../../constants";
+import { searchProduct } from '../../../redux/orebiSlice';
 
 const HeaderBottom = () => {
   const products = useSelector((state) => state.orebiReducer.products);
   const [show, setShow] = useState(false);
   const [showUser, setShowUser] = useState(false);
+  const [isShowSeachLog, setIsShowSearchLog] = useState(false);
   const navigate = useNavigate();
   const [count, setCount] = useState(0);
   const [countUser, setCountUser] = useState(0);
   const token = localStorage.getItem("accessToken");
   const ref = useRef();
   const refUser = useRef();
+  const dispatch = useDispatch();
   useEffect(() => {
     document.body.addEventListener("click", (e) => {
       if (ref.current.contains(e.target)) {
@@ -51,8 +54,21 @@ const HeaderBottom = () => {
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
+    setIsShowSearchLog(true);
+    if(e.target.value == ''){
+      dispatch(searchProduct(''));
+      setIsShowSearchLog(false);
+    }
   };
 
+  const handleSubmit = (e) =>{
+    e.preventDefault();
+    dispatch(searchProduct(searchQuery));
+    setIsShowSearchLog(false);
+    setTimeout(() => {
+      navigate('/shop')
+    }, 500);
+  }   
   useEffect(() => {
     const filtered = paginationItems.filter((item) =>
       item.productName.toLowerCase().includes(searchQuery.toLowerCase())
@@ -110,19 +126,21 @@ const HeaderBottom = () => {
             )}
           </div>
           <div className="relative w-full lg:w-[600px] h-[50px] text-base text-primeColor bg-white flex items-center gap-2 justify-between px-6 rounded-xl">
+           <form onSubmit={handleSubmit} className="flex-1 h-full">
             <input
-              className="flex-1 h-full outline-none placeholder:text-[#C4C4C4] placeholder:text-[14px]"
+              className="flex-1 h-full w-full outline-none placeholder:text-[#C4C4C4] placeholder:text-[14px]"
               type="text"
               onChange={handleSearch}
               value={searchQuery}
               placeholder="Search your products here"
             />
+            </form>
             <FaSearch className="w-5 h-5" />
-            {searchQuery && (
+            {isShowSeachLog && (
               <div
                 className={`w-full mx-auto h-96 bg-white top-16 absolute left-0 z-50 overflow-y-scroll shadow-2xl scrollbar-hide cursor-pointer`}
               >
-                {searchQuery &&
+                {isShowSeachLog &&
                   filteredProducts.map((item) => (
                     <div
                       onClick={() =>

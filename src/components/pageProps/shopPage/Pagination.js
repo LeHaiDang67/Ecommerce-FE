@@ -4,6 +4,7 @@ import Product from "../../home/Products/Product";
 import { paginationItems, BestSellerItems, NewArrivalItems, SpecialOfferItem } from "../../../constants";
 import { useEffect } from "react";
 import $ from "jquery";
+import { useSelector } from "react-redux";
 
 const items = paginationItems;
 function Items({ currentItems }) {
@@ -28,53 +29,63 @@ function Items({ currentItems }) {
 }
 
 const Pagination = ({ itemsPerPage, sortType }) => {
-  // Here we use item offsets; we could also use page offsets
-  // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
   const [itemStart, setItemStart] = useState(0);
+  const [totalItem, setTotalItem] = useState(0);
   const [pageCount, setPageCount] = useState(0);
-
+  const seachtxt = useSelector((state) => state.orebiReducer.seachtxt);
   // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
   const [currentItems, setCurrentItems] = useState(items)
 
   // Invoke when user click to request another page.
   const handlePageClick = (event) => {
-    const newOffset = (event.selected * itemsPerPage) % items.length;
+    const newOffset = (event.selected * itemsPerPage) % totalItem;
     setItemOffset(newOffset);
     setItemStart(newOffset);
   };
 
   useEffect(() => {
+    $(`.font-semibold .mr-6:nth-child(${0})`).addClass("bg-black text-white");
     setItemOffset(0);
     setItemStart(0);
   }, [sortType])
 
+  const handleType = (data, endOffset) => {
+    if(seachtxt != ''){
+      const filtered = data.filter((item) =>
+      item.productName.toLowerCase().includes(seachtxt.toLowerCase())
+      );
+      setCurrentItems(filtered.slice(itemOffset, endOffset));
+      setPageCount(Math.ceil(filtered.length / itemsPerPage));
+      setTotalItem(filtered.length);
+    } else {
+      setCurrentItems(data.slice(itemOffset, endOffset));
+      setPageCount(Math.ceil(data.length / itemsPerPage));
+      setTotalItem(data.length);
+    }
+  
+  }
+
   useEffect(() => {
     const endOffset = itemOffset + itemsPerPage;
-    $(`.font-semibold .mr-6:nth-child(${0})`).addClass("bg-black text-white");
     switch (sortType) {
       case "BestSellers":
-        setCurrentItems(BestSellerItems.slice(itemOffset, endOffset));
-        setPageCount(Math.ceil(BestSellerItems.length / itemsPerPage));
+        handleType(BestSellerItems, endOffset);
         break;
       case "NewArrival":
-        setCurrentItems(NewArrivalItems.slice(itemOffset, endOffset));
-        setPageCount(Math.ceil(NewArrivalItems.length / itemsPerPage));
+        handleType(NewArrivalItems, endOffset);
         break;
       case "Featured":
-        setCurrentItems(NewArrivalItems.slice(itemOffset, endOffset));
-        setPageCount(Math.ceil(NewArrivalItems.length / itemsPerPage));
+        handleType(SpecialOfferItem, endOffset);
         break;
       case "FinalOffer":
-        setCurrentItems(SpecialOfferItem.slice(itemOffset, endOffset));
-        setPageCount(Math.ceil(SpecialOfferItem.length / itemsPerPage));
+        handleType(SpecialOfferItem, endOffset);
         break;
       default:
-        setCurrentItems(paginationItems.slice(itemOffset, endOffset));
-        setPageCount(Math.ceil(paginationItems.length / itemsPerPage));
+        handleType(paginationItems, endOffset);
         break;
     }
-  }, [sortType, itemOffset, itemsPerPage]);
+  }, [sortType, itemOffset, itemsPerPage, seachtxt]);
 
   return (
     <div>
@@ -93,11 +104,12 @@ const Pagination = ({ itemsPerPage, sortType }) => {
           pageClassName="mr-6"
           containerClassName="flex text-base font-semibold font-titleFont py-10"
           activeClassName="bg-black text-white"
+          key={pageCount}
         />
 
         <p className="text-base font-normal text-lightText">
-          Products from {itemStart === 0 ? 1 : itemStart} to {itemOffset + itemsPerPage} of{" "}
-          {items.length}
+          Products from {itemStart === 0 ? 1 : itemStart} to {(itemOffset + itemsPerPage) > totalItem ? totalItem : (itemOffset + itemsPerPage)} of{" "}
+          {totalItem}
         </p>
       </div>
     </div>
