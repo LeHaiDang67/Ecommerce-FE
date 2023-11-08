@@ -5,8 +5,6 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eCommerceAPI", "eCommerceAPI\eCommerceAPI.csproj", "{A40D7FD6-771A-49B4-AC05-721AF4AC04EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationTest", "WebApplicationTest\WebApplicationTest.csproj", "{5F9C8CA8-6D6C-449E-A98F-6CCA174DCF99}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{A40D7FD6-771A-49B4-AC05-721AF4AC04EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A40D7FD6-771A-49B4-AC05-721AF4AC04EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A40D7FD6-771A-49B4-AC05-721AF4AC04EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5F9C8CA8-6D6C-449E-A98F-6CCA174DCF99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5F9C8CA8-6D6C-449E-A98F-6CCA174DCF99}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5F9C8CA8-6D6C-449E-A98F-6CCA174DCF99}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5F9C8CA8-6D6C-449E-A98F-6CCA174DCF99}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
