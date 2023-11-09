@@ -1,10 +1,14 @@
 import axios from 'axios';
 
-const requestApi = async (method, endpoint, data = "") => {
-    return await fetch({
+const requestApi = (method, endpoint, data) => {
+    let headers = {
+        "Content-Type": "application/json",
+    };
+    return axios({
         method: method,
         url: `${process.env.REACT_APP_API_URL}${endpoint}`,
-        data: data && ""
+        data: data && "",
+        headers
     });
 }
 

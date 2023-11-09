@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logoLight } from "../../assets/images";
 import { data } from "jquery";
 import requestApi from "../../heplers/apiHelper";
@@ -20,6 +20,7 @@ const SignUp = () => {
   const [errConfirmPassword, setErrConfirmPassword] = useState("");
   // ============= Error Msg End here ===================
   const [successMsg, setSuccessMsg] = useState("");
+  const navigate = useNavigate();
   // ============= Event Handler Start here =============
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -72,10 +73,26 @@ const SignUp = () => {
       ) {
         let params = new URLSearchParams({
           user: email,
-          passWord: password
+          passWord: password,
+          confirmPassword: confirmPassword
         });
-        requestApi("POST", '/login' + params).then(function (res) {
-          console.log(res);
+        requestApi("POST", '/signUp?' + params).then(function (res) {
+          console.log(res.data);
+          if (res.status == 200) {
+            requestApi("GET", '/verifyEmail').then(function (resVerify) {
+              console.log(resVerify);
+              setEmail("");
+              setPassword("");
+              setConfirmPassword("");
+              setTimeout(() => {
+                navigate('/signin');
+              }, 500);
+            }).catch(errVerify => {
+              console.log(errVerify);
+            });
+          }
+        }).catch(err => {
+          console.log(err);
         });
       }
     }

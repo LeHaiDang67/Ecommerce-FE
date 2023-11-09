@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import { logoLight } from "../../assets/images";
+import requestApi from "../../heplers/apiHelper";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -36,16 +37,26 @@ const SignIn = () => {
       setErrPassword("Create a password");
     }
     // ============== Getting the value ==============
+    let params = new URLSearchParams({
+      user: email,
+      passWord: password
+    });
     if (email && password) {
-      setSuccessMsg(
-        `Hello dear, Thank you for your attempt. We are processing to validate your access. Till then stay connected and additional assistance will be sent to you by your mail at ${email}`
-      );
-      setEmail("");
-      setPassword("");
-      localStorage.setItem("accessToken", "123");
-      setTimeout(()=>{
-        navigate('/');
-      }, 100);
+      requestApi("POST", '/login?' + params).then(function (res) {
+        console.log(res.data);
+        setSuccessMsg(
+          `Hello dear, Thank you for your attempt. We are processing to validate your access. Till then stay connected and additional assistance will be sent to you by your mail at ${email}`
+        );
+        setEmail("");
+        setPassword("");
+        localStorage.setItem("accessToken", "123");
+        setTimeout(() => {
+          navigate('/');
+        }, 500);
+      }).catch(err => {
+        console.log(err.response)
+        throw (err);
+      })
     }
   };
   return (

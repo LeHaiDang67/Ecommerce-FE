@@ -21,19 +21,22 @@ nav .active li {
   text-decoration: 1px underline black;
 }
 
-@media screen and (max-width: 665px) {
+@media screen and (max-width: 955px) {
   nav .active li {
     color: white;
     font-weight: 600;
     text-decoration: 1px underline white;
   }
-  .menu-user{
+
+  .menu-user {
     left: 0.1rem;
   }
 }
-.menu-user{
+
+.menu-user {
   right: 1.5rem;
 }
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -66,7 +69,7 @@ nav .active li {
   background: #272343;
 }
 
-.group-item{
+.group-item {
   margin: 10px 0px;
 }
 
