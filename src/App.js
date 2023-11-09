@@ -24,7 +24,7 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
 import Profile from "./pages/Account/Profile";
 import ThePublicLayout from "./containers/ThePublicLayout";
-
+import { AuthContextProvider } from "./contexts/AuthConext";
 
 const Layout = () => {
   return (
@@ -57,7 +57,7 @@ const router = createBrowserRouter(
         <Route path="/cart" element={<Cart />}></Route>
         <Route path="/paymentgateway" element={<Payment />}></Route>
       </Route>
-      <Route path="/" element={<ThePublicLayout/>}>
+      <Route path="/" element={<ThePublicLayout />}>
         <Route path="/profile" element={<Profile />}></Route>
       </Route>
       <Route path="/signup" element={<SignUp />}></Route>
@@ -69,7 +69,9 @@ const router = createBrowserRouter(
 function App() {
   return (
     <div className="font-bodyFont">
-      <RouterProvider router={router} />
+      <AuthContextProvider>
+        <RouterProvider router={router} />
+      </AuthContextProvider>
     </div>
   );
 }

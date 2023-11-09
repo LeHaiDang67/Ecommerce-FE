@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import { logoLight } from "../../assets/images";
 import requestApi from "../../heplers/apiHelper";
+import { UserAuth } from '../../contexts/AuthConext';
+import GoogleButton from "react-google-button";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ const SignIn = () => {
 
   // ============= Error Msg End here ===================
   const [successMsg, setSuccessMsg] = useState("");
+  const { googleSignIn, user } = UserAuth();
   // ============= Event Handler Start here =============
   const handleEmail = (e) => {
     setEmail(e.target.value);
@@ -26,15 +29,28 @@ const SignIn = () => {
     setErrPassword("");
   };
   // ============= Event Handler End here ===============
+  const EmailValidation = (email) => {
+    return String(email)
+      .toLowerCase()
+      .match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i);
+  };
   const handleSignUp = (e) => {
     e.preventDefault();
 
     if (!email) {
       setErrEmail("Enter your email");
+    } else {
+      if (!EmailValidation(email)) {
+        setErrEmail("Enter a Valid email");
+      }
     }
 
     if (!password) {
       setErrPassword("Create a password");
+    } else {
+      if (password.length < 6) {
+        setErrPassword("Passwords must be at least 6 characters");
+      }
     }
     // ============== Getting the value ==============
     let params = new URLSearchParams({
@@ -59,6 +75,20 @@ const SignIn = () => {
       })
     }
   };
+  const handleGoogleSignIn = async () => {
+    try {
+      await googleSignIn();
+      localStorage.setItem("accessToken", "123");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (user != null) {
+      navigate('/');
+    }
+  }, [user]);
   return (
     <div className="w-full h-screen flex items-center justify-center">
       <div className="w-1/2 hidden lgl:inline-flex h-full text-white">
@@ -205,6 +235,9 @@ const SignIn = () => {
                     </span>
                   </Link>
                 </p>
+                <div className='max-w-[240px] m-auto py-4'>
+                  <GoogleButton onClick={handleGoogleSignIn} />
+                </div>
               </div>
             </div>
           </form>

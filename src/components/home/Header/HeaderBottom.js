@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { paginationItems } from "../../../constants";
 import { searchProduct } from '../../../redux/orebiSlice';
+import { UserAuth } from '../../../contexts/AuthConext';
 
 const HeaderBottom = () => {
   const products = useSelector((state) => state.orebiReducer.products);
@@ -20,6 +21,7 @@ const HeaderBottom = () => {
   const ref = useRef();
   const refUser = useRef();
   const dispatch = useDispatch();
+  const { logOut, user } = UserAuth();
   useEffect(() => {
     document.body.addEventListener("click", (e) => {
       if (ref.current.contains(e.target)) {
@@ -55,20 +57,20 @@ const HeaderBottom = () => {
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
     setIsShowSearchLog(true);
-    if(e.target.value == ''){
+    if (e.target.value == '') {
       dispatch(searchProduct(''));
       setIsShowSearchLog(false);
     }
   };
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(searchProduct(searchQuery));
     setIsShowSearchLog(false);
     setTimeout(() => {
       navigate('/shop')
     }, 500);
-  }   
+  }
   useEffect(() => {
     const filtered = paginationItems.filter((item) =>
       item.productName.toLowerCase().includes(searchQuery.toLowerCase())
@@ -83,6 +85,7 @@ const HeaderBottom = () => {
   const handleLogout = () => {
     localStorage.removeItem('accessToken');
     navigate(`/`);
+    logOut();
   }
 
   return (
@@ -126,14 +129,14 @@ const HeaderBottom = () => {
             )}
           </div>
           <div className="relative w-full lg:w-[600px] h-[50px] text-base text-primeColor bg-white flex items-center gap-2 justify-between px-6 rounded-xl">
-           <form onSubmit={handleSubmit} className="flex-1 h-full">
-            <input
-              className="flex-1 h-full w-full outline-none placeholder:text-[#C4C4C4] placeholder:text-[14px]"
-              type="text"
-              onChange={handleSearch}
-              value={searchQuery}
-              placeholder="Search your products here"
-            />
+            <form onSubmit={handleSubmit} className="flex-1 h-full">
+              <input
+                className="flex-1 h-full w-full outline-none placeholder:text-[#C4C4C4] placeholder:text-[14px]"
+                type="text"
+                onChange={handleSearch}
+                value={searchQuery}
+                placeholder="Search your products here"
+              />
             </form>
             <FaSearch className="w-5 h-5" />
             {isShowSeachLog && (
