@@ -24,7 +24,7 @@ const HeaderBottom = () => {
   const { logOut, user } = UserAuth();
   useEffect(() => {
     document.body.addEventListener("click", (e) => {
-      if (ref.current.contains(e.target)) {
+      if (ref?.current?.contains(e.target)) {
         if (count > 0) {
           setShow(true);
         }
@@ -38,7 +38,7 @@ const HeaderBottom = () => {
 
   useEffect(() => {
     document.body.addEventListener("click", (e) => {
-      if (refUser.current.contains(e.target)) {
+      if (refUser?.current?.contains(e.target)) {
         if (countUser > 0) {
           setShowUser(true);
         }

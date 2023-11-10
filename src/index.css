@@ -82,3 +82,42 @@ nav .active li {
 .container-footer {
   margin-top: auto;
 }
+
+/* Avatar profile */
+.box-avatar span>i.fa-pencil {
+  color: #929292;
+  cursor: pointer;
+}
+
+.box-avatar .avatar-img {
+  margin-top: -50px;
+  position: relative;
+}
+
+.box-avatar .avatar-img .update-profile {
+  cursor: pointer;
+}
+
+.box-avatar .avatar-img .border-img {
+  border: 5px solid #b5cfd8;
+  display: inline-block;
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+
+.box-avatar .avatar-img .border-img img {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+}
+
+.icon-user {
+  font-size: 24px;
+  vertical-align: middle;
+  color: #ccc;
+}
+
+.icon-user-avatar {
+  font-size: 65px;
+}
