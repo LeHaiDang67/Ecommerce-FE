@@ -112,12 +112,22 @@ nav .active li {
   border-radius: 50%;
 }
 
+.border-img img {
+  border-radius: 50%;
+  box-shadow: 0 0 9px #b5cfd8;
+}
+
 .icon-user {
   font-size: 24px;
   vertical-align: middle;
-  color: #ccc;
+  color: #b5cfd8;
 }
 
 .icon-user-avatar {
-  font-size: 65px;
+  font-size: 90px;
+}
+
+.fa-user-circle-o {
+  border-radius: 50%;
+  box-shadow: 0 0 9px #b5cfd8;
 }

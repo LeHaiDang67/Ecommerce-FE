@@ -36,17 +36,15 @@ const Profile = (props) => {
                 <form onSubmit={handleSubmit}>
                     <div className="text-center box-avatar mt-20">
                         <div className="avatar-img">
-                            <span className="border-img">
-                                {userProfile.photo
-                                    ? <img
-                                        src={userProfile.photo}
-                                        alt="paul"
-                                        width="100px"
-                                        className="avatar-circle"
-                                    />
-                                    : <span className="icon-user icon-user-avatar"><i className="fa fa-user-circle-o" aria-hidden="true" /></span>
-                                }
-                            </span>
+                            {userProfile.photo
+                                ? <span className="border-img"> <img
+                                    src={userProfile.photo}
+                                    alt="paul"
+                                    width="100px"
+                                    className="avatar-circle"
+                                /></span>
+                                : <span className="icon-user icon-user-avatar"><i className="fa fa-user-circle-o" aria-hidden="true" /></span>
+                            }
                         </div>
                     </div>
                     <div className="group-item">

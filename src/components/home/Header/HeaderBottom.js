@@ -184,7 +184,14 @@ const HeaderBottom = () => {
           </div>
           <div className="flex gap-4 mt-2 lg:mt-0 items-center pr-6 cursor-pointer relative">
             <div onClick={() => setShowUser(!showUser)} ref={refUser} className="flex">
-              <FaUser />
+              {user && user.photoURL ? <span className="border-img"> <img
+                src={user?.photoURL}
+                alt="paul"
+                width="20px"
+                className="avatar-circle"
+              /></span> : <FaUser />
+              }
+
               <FaCaretDown />
             </div>
             {showUser && (
